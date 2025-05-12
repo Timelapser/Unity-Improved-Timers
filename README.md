@@ -3,7 +3,7 @@
 An extensible Timer solution for Unity Game Development.  Timers are self managing 
 by injecting a Timer Manager class into Unity's Update loop.
 
-Updated with an option for unscaled time.
+Updated fork with an option for unscaled time and easy hooks for finished timers.
 
 ## Example Usage
 
@@ -13,6 +13,7 @@ CountdownTimer timer = new CountdownTimer(5f, useUnscaledTime: true);
 void Start() {
     timer.OnTimerStart += () => Debug.Log("Timer started");
     timer.OnTimerStop += () => Debug.Log("Timer stopped");
+    timer.OnTimerFinished += () => Debug.Log("Timer finished");
     timer.Start();
     
     timer.Pause();
@@ -63,7 +64,7 @@ the Unity Package Manager using this URL:
 Alternatively, you can add the following line to your project's `manifest.json` file.
 
 ```
-"com.gitamend.improvedtimers": "https://github.com/Timelapser/Unity-Improved-Timers.git"
+"com.timelapser.improvedtimers": "https://github.com/Timelapser/Unity-Improved-Timers.git"
 ```
 
 ## YouTube
