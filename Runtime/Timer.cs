@@ -13,6 +13,7 @@ namespace ImprovedTimers {
 
         public Action OnTimerStart = delegate { };
         public Action OnTimerStop = delegate { };
+        public Action OnTimerFinished = delegate { };
 
         protected Timer(float value, bool useUnscaledTime = false) {
             initialTime = value;
@@ -35,6 +36,10 @@ namespace ImprovedTimers {
                 IsRunning = false;
                 TimerManager.DeregisterTimer(this);
                 OnTimerStop.Invoke();
+                if (IsFinished)
+                {
+                    OnTimerFinished.Invoke();
+                }
             }
         }
 
