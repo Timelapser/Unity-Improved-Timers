@@ -5,11 +5,11 @@ namespace ImprovedTimers {
     /// Timer that counts down from a specific value to zero.
     /// </summary>
     public class CountdownTimer : Timer {
-        public CountdownTimer(float value) : base(value) { }
+        public CountdownTimer(float value, bool useUnscaledTime = false) : base(value, useUnscaledTime) { }
 
         public override void Tick() {
             if (IsRunning && CurrentTime > 0) {
-                CurrentTime -= Time.deltaTime;
+                CurrentTime -= GetDeltaTime();
             }
 
             if (IsRunning && CurrentTime <= 0) {

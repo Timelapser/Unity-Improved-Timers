@@ -5,6 +5,7 @@ namespace ImprovedTimers {
     public abstract class Timer : IDisposable {
         public float CurrentTime { get; protected set; }
         public bool IsRunning { get; private set; }
+        public bool UseUnscaledTime { get; }
 
         protected float initialTime;
 
@@ -13,9 +14,12 @@ namespace ImprovedTimers {
         public Action OnTimerStart = delegate { };
         public Action OnTimerStop = delegate { };
 
-        protected Timer(float value) {
+        protected Timer(float value, bool useUnscaledTime = false) {
             initialTime = value;
+            UseUnscaledTime = useUnscaledTime;
         }
+
+        protected float GetDeltaTime() => UseUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
         public void Start() {
             CurrentTime = initialTime;

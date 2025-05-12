@@ -12,7 +12,7 @@ namespace ImprovedTimers {
         
         float timeThreshold;
 
-        public FrequencyTimer(int ticksPerSecond) : base(0) {
+        public FrequencyTimer(int ticksPerSecond, bool useUnscaledTime = false) : base(0, useUnscaledTime) {
             CalculateTimeThreshold(ticksPerSecond);
         }
 
@@ -23,7 +23,7 @@ namespace ImprovedTimers {
             }
 
             if (IsRunning && CurrentTime < timeThreshold) {
-                CurrentTime += Time.deltaTime;
+                CurrentTime += GetDeltaTime();
             }
         }
 
